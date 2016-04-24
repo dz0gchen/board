@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+ {% load staticfiles %}
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Доска объявлений (Twitter Bootstrap)</title>
+    
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+    <div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="widget-box">
+          <div class="widget-header bordered-bottom bordered-themesecondary">
+            <i class="widget-icon fa fa-tags themesecondary"></i>
+            <h5 class="widget-caption themesecondary">Объявление</h5>
+          </div>
+          <!--Widget Header-->
+          <div class="widget-body">
+            <div class="widget-main no-padding">
+              <div class="tickets-container">
+                <ul class="tickets-list">
+                  {% block content %}
+                  <li class="ticket-item">
+                    <div class="row">
+                      <div class="ticket-user col-md-6 col-sm-12">
+                        <span class="time">{{detail.header}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="ticket-item">
+                    <div class="row">
+                      <div class="ticket-user col-md-6 col-sm-12">
+                        <span class="time">{{detail.text}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="ticket-item">
+                    <div class="row">
+                      <div class="ticket-user col-md-6 col-sm-12">
+                        <span class="time">{{detail.date_of_creation}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  {% endblock %} 
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+  </body>
+</html>

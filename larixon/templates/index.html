@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+ {% load staticfiles %}
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Доска объявлений (Twitter Bootstrap)</title>
+    
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+    <div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="widget-box">
+          <div class="widget-header bordered-bottom bordered-themesecondary">
+            <i class="widget-icon fa fa-tags themesecondary"></i>
+            <h5 class="widget-caption themesecondary">Доска объявлений</h5>
+          </div>
+          <!--Widget Header-->
+          <div class="widget-body">
+            <div class="widget-main no-padding">
+              <div class="tickets-container">
+                <ul class="tickets-list">
+                  <li class="ticket-item">
+                    {% block content %}
+                    {% for advert in index %}
+                    <div class="row">
+                      <div class="ticket-user col-md-6 col-sm-12">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="user-avatar">
+                        <span class="time">{{advert.header}}</span>
+                        <span class="user-company"><a href="/detail/{{ advert.id }}/">подробно</a></span>
+                      </div>
+                      <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
+                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                        <i class="fa fa-clock-o"></i>
+                        <span class="time">{{advert.date_of_creation}}</span>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </li>
+	                {% if is_paginated %}
+	                   <div class="pagination">
+	                       <span class="page-links">
+	                           {% if page_obj.has_previous %}
+	                               <a href="/index?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+	                           {% endif %}
+	                           <span class="page-current">
+	                               Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+	                           </span>
+	                           {% if page_obj.has_next %}
+	                               <a href="/index?page={{ page_obj.next_page_number }}">Следующая</a>
+	                           {% endif %}
+	                       </span>
+	                   </div>
+	                {% endif %}
+                    {% endblock %} 
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+  </body>
+</html>
